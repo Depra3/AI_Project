@@ -6,11 +6,13 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # 다른 파일의 함수를 불러온다
+from title import run_title
 from search import run_search
 from predict import run_predict
 from suggestions import run_suggestions
 
-    # st.title('TITLE')
+
+st.title('내 방, 어디?')
 
 selected3 = option_menu(None, ["🏠Home", "🔎전월세 검색", "📊전세 예측?",
  '💬건의사항'], 
@@ -25,9 +27,10 @@ selected3 = option_menu(None, ["🏠Home", "🔎전월세 검색", "📊전세 �
 )
 
 if selected3 == "🏠Home":
-    st.title('내 방, 어디?')
-    data = pd.read_csv('data/bds_data.csv', encoding='cp949')
-    st.write(data.head())
+    # st.title('내 방, 어디?')
+    # data = pd.read_csv('data/bds_data.csv', encoding='cp949')
+    # st.write(data.head())
+    run_title()
 
 elif selected3 == "🔎전월세 검색":
     run_search()

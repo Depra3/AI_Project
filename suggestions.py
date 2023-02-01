@@ -8,22 +8,31 @@ import pandas as pd
 conn = sqlite3.connect('suggestion.db', check_same_thread=False)
 cur = conn.cursor()
 
-
+def create_tb():
+    cur.execute('CREATE TABLE IF NOT EXISTS suggestion(author CHAR, pword VARCHAR, title TEXT, comment MEDIUMTEXT, date TEXT)' )
+    conn.commit()
+    
 def run_suggestions():
     st.title('건의사항')
 
     cur.execute('CREATE TABLE IF NOT EXISTS suggestion(author CHAR, email VARCHAR, title TEXT, comment MEDIUMTEXT, date TEXT)' )
     conn.commit()
+
 # 데이터 쓰기
 def add_data(author, pword, title, date, comment):
     params = (author, pword, title, str(date), comment)
     cur.execute("INSERT INTO suggestion(author, email, title, date, comment) VALUES (?,?,?,?,?)",params)
     conn.commit()
+
 # 목록
 def sugg_list():
-    cur.execute('SELECT author, title, date, comment FROM suggestion')
-    sugg = cur.fetchall()
-    return sugg
+    try:
+        cur.execute('SELECT author, title, date, comment FROM suggestion')
+        sugg = cur.fetchall()
+        return sugg
+    except:
+        return 
+
 # # 수정 (update)
 # def data_update(username):
 #     pass
@@ -32,12 +41,15 @@ def sugg_list():
 #     cur.execute('DELETE FROM suggestion WHERE AUTHOR =:AUTHOR' ,{'AUTHOR':author})
 #     conn.commit()
 #     # conn.close()
+
 def run_suggestions():
     st.subheader('건의사항')
-# 문의사항 입력
+
+    # 문의사항 입력
     with st.expander("문의하기"):
         form = st.form(key="annotation")
         with form:
+            create_tb()
             cols = st.columns((1,1))
             author = cols[0].text_input("작성자명 ", max_chars = 4)
             email = cols[1].text_input("이메일 ")
@@ -45,8 +57,8 @@ def run_suggestions():
             comment = st.text_area("내용 ")
             submit = st.form_submit_button(label="작성")
             date = time.strftime('%Y.%m.%d %H:%M')
+
             if submit:
-                create_tb()
                 add_data(author, email, title, comment, date)
                 st.success("문의하신 내용이 접수되었습니다!")
                 st.balloons()

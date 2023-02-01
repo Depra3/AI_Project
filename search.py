@@ -1,5 +1,7 @@
 # -*- coding : utf-8 -*-
 
+# 전월세 검색 탭
+
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -64,35 +66,35 @@ def run_search():
         rent_fee_search = (rent_fee_select[0] <= data['RENT_FEE']) & (data['RENT_FEE'] <= rent_fee_select[1])
         rent_area_search = (rent_area_select[0]<= data['RENT_AREA']) & (data['RENT_AREA'] <= rent_area_select[1])
 
-    data_search = data[gu_search & dong_search & type_search & rent_gtn_search & rent_fee_search & rent_area_search]
+        data_search = data[gu_search & dong_search & type_search & rent_gtn_search & rent_fee_search & rent_area_search]
 
-    data_search['FLR_NO'] = data_search['FLR_NO'].astype(str) + '층'
-    data_search = data_search.drop(['SGG_CD', 'BJDONG_CD'], axis=1)
+        data_search['FLR_NO'] = data_search['FLR_NO'].astype(str) + '층'
+        data_search = data_search.drop(['SGG_CD', 'BJDONG_CD'], axis=1)
 
-    cols = ['BOBN', 'BUBN']
-    data_search['번지'] = data_search[cols].apply(lambda row: '-'.join(row.values.astype(str)) 
+        cols = ['BOBN', 'BUBN']
+        data_search['번지'] = data_search[cols].apply(lambda row: '-'.join(row.values.astype(str)) 
                                             if row['BUBN'] != 0
                                             else row['BOBN'], axis=1)
 
-    data_search['BLDG_NM'] = data_search['BLDG_NM'].str.replace("아파트", "")
-    data_search['BLDG_NM'] = data_search['BLDG_NM'].str.replace("오피스텔", "")
+        data_search['BLDG_NM'] = data_search['BLDG_NM'].str.replace("아파트", "")
+        data_search['BLDG_NM'] = data_search['BLDG_NM'].str.replace("오피스텔", "")
 
-    cols1 = ['SGG_NM', 'BJDONG_NM', '번지', 'BLDG_NM', 'HOUSE_GBN_NM', 'FLR_NO']
-    data_search['주소'] = data_search[cols1].apply(lambda row:' '.join(row.values.astype(str)),axis=1)
-    data_search = data_search.drop(['SGG_NM', 'BJDONG_NM', 'BOBN', 
+        cols1 = ['SGG_NM', 'BJDONG_NM', '번지', 'BLDG_NM', 'HOUSE_GBN_NM', 'FLR_NO']
+        data_search['주소'] = data_search[cols1].apply(lambda row:' '.join(row.values.astype(str)),axis=1)
+        data_search = data_search.drop(['SGG_NM', 'BJDONG_NM', 'BOBN', 
     'BUBN', 'FLR_NO', 'BLDG_NM', '번지', 'HOUSE_GBN_NM'], axis=1)
 
-    data_search['RENT_AREA'] = data_search['RENT_AREA'].apply(lambda x: math.trunc(x / 3.3058))
-    data_search.columns = ['계약일', '전월세 구분', '임대면적(평)',
+        data_search['RENT_AREA'] = data_search['RENT_AREA'].apply(lambda x: math.trunc(x / 3.3058))
+        data_search.columns = ['계약일', '전월세 구분', '임대면적(평)',
      '보증금(만원)', '임대료(만원)', '건축년도', '주소']
 
-    data_search = data_search[['계약일', '주소', '보증금(만원)', 
+        data_search = data_search[['계약일', '주소', '보증금(만원)', 
      '임대료(만원)', '임대면적(평)', '건축년도', '전월세 구분']]
 
-    data_search = data_search.reset_index(drop=True)
-    data_search.index = data_search.index+1
+        data_search = data_search.reset_index(drop=True)
+        data_search.index = data_search.index+1
 
-    st.write(data_search)
+        st.write(data_search)
 
 # def pyeong():
 #     data = pd.read_csv('data/bds_data.csv', encoding='cp949')
