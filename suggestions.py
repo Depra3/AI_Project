@@ -5,33 +5,27 @@ import sqlite3
 import time
 import pandas as pd
 
-conn = sqlite3.connect('suggestion.db', check_same_thread=False)
+conn = sqlite3.connect('suggestion1.db', check_same_thread=False)
 cur = conn.cursor()
 
 def create_tb():
-    cur.execute('CREATE TABLE IF NOT EXISTS suggestion(author CHAR, pword VARCHAR, title TEXT, comment MEDIUMTEXT, date TEXT)' )
-    conn.commit()
-    
-def run_suggestions():
-    st.title('건의사항')
-
-    cur.execute('CREATE TABLE IF NOT EXISTS suggestion(author CHAR, email VARCHAR, title TEXT, comment MEDIUMTEXT, date TEXT)' )
+    cur.execute('CREATE TABLE IF NOT EXISTS suggestion1(author CHAR, email VARCHAR, title TEXT, comment MEDIUMTEXT, date TEXT)' )
     conn.commit()
 
 # 데이터 쓰기
-def add_data(author, pword, title, date, comment):
-    params = (author, pword, title, str(date), comment)
-    cur.execute("INSERT INTO suggestion(author, email, title, date, comment) VALUES (?,?,?,?,?)",params)
+def add_data(author, email, title, date, comment):
+    params = (author, email, title, str(date), comment)
+    cur.execute("INSERT INTO suggestion1(author, email, title, date, comment) VALUES (?,?,?,?,?)",params)
     conn.commit()
 
 # 목록
 def sugg_list():
     try:
-        cur.execute('SELECT author, title, date, comment FROM suggestion')
+        cur.execute('SELECT author, title, date, comment FROM suggestion1')
         sugg = cur.fetchall()
         return sugg
     except:
-        return 
+        return
 
 # # 수정 (update)
 # def data_update(username):
@@ -57,7 +51,6 @@ def run_suggestions():
             comment = st.text_area("내용 ")
             submit = st.form_submit_button(label="작성")
             date = time.strftime('%Y.%m.%d %H:%M')
-
             if submit:
                 add_data(author, email, title, comment, date)
                 st.success("문의하신 내용이 접수되었습니다!")
