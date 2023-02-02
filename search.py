@@ -16,6 +16,15 @@ def run_search():
     # """)
     data = pd.read_csv('data/bds_data.csv', encoding='cp949')
 
+    # cols = ['SGG_NM', 'BJDONG_NM']
+    # data['구/동'] = data[cols].apply(lambda row: '-'.join(row.values.astype(str)))
+
+    # st.write(data['구/동'])       
+
+    # # data_search['번지'] = data_search[cols].apply(lambda row: '-'.join(row.values.astype(str)) 
+    # #                                         if row['BUBN'] != 0
+    # #                                         else row['BOBN'], axis=1)
+
     # 해당 구 선택
     gu = data['SGG_NM'].unique()
     gu_select = st.sidebar.selectbox('구를 선택해주세요', gu)
