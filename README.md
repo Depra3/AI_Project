@@ -1,5 +1,5 @@
 # 내 방, 어때 ? (version2)
-![내방어때](image.png)
+![image](https://user-images.githubusercontent.com/120995529/216347597-1ff2140e-78d4-424d-8ffc-4ff9fdc269f9.png))
 
 ## 개요
 ### 1. 과제
