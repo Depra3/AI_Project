@@ -1,9 +1,33 @@
-# 내 방, 어때 ? (version2)
-![image](https://user-images.githubusercontent.com/120995529/216347597-1ff2140e-78d4-424d-8ffc-4ff9fdc269f9.png))
+# 내 방, 어디 ? (version2)
+![image](https://user-images.githubusercontent.com/120995529/216347597-1ff2140e-78d4-424d-8ffc-4ff9fdc269f9.png)
 
 ## 개요
 ### 1. 과제
-- 
+- **서울시공공데이터**에서 **부동산실거래데이터**를 활용해 월세/전세 시세예측
+
+### 2. 상세 설명
+- 전세와 월세를 비교할 수 있는 서비스의 필요성 대두
+- 현재 금리 인상 및 보증금 미반환 사고등으로 월세 비중 상승
+- 월세 가격인상을 예상에 따른 소비자의 합리적인 소비 방향 예측하기
+
+### 3. 팀 구성
+- 사용언어 : Python
+- 작업툴 : VS code
+- 인원 : 7명
+- 주여 업무 : Streamlit 라이브러리를 이용한 웹개발 구현 코드 작성
+- 기간 : 2023-01-30 - 2023-02-10
+
+### 라이브러리 버전
+- streamlit : 1.17.0v
+    - from streamlit_option_menu import option_menu
+- pandas : 1.5.3v
+- numpy : 1.24.1v
+- matplotlib : 3.6.3v
+
+## 소스코드 설명
+
+
+
 
 ### 99 . 팀 구성
 - 작업 툴 : Python
@@ -13,7 +37,7 @@
 - 주요 업무 : 웹개발 코드 구현
 - 기간 : 
 ## 기간
-### 2023-12-31
+### 2023-01-30
 ***
 ### 2023-02-01
 ## 개발팀
@@ -81,12 +105,6 @@
 
 ### 
 ***
-### 라이브러리 버젼 
-- streamlit : 1.17.0v
-    - from streamlit_option_menu import option_menu
-- pandas : 1.5.3v
-- numpy : 1.24.1v
-- matplotlib : 3.6.3v
 ***
 ### 설치방법
 - MacOS
