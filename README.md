@@ -5,11 +5,24 @@
 ### 2. 추천매물(필터링)
 ### 3. 월세 시세 보여주기 (전세, 매매)
 ***
+### 라이브러리 버젼 pandas(1.5.0v)
+***
+### 설치방법
+- MacOS
+"""
+VS code..~~
+
+streamlit run 파일명(ex:app.py)
+"""
+- Windows
+- Ubuntu
+***
 ## 웹개발 Framewoke : Streamlit
 ### page1 : 인덱스
 ### page2 : 월세 검색
 ### page3 : 전세 예측
 ### page4 : 건의사항
+***
 ***
 ### 2023-12-31
 ***

@@ -23,7 +23,12 @@ def run_search():
     dong_selcet = st.sidebar.selectbox('동을 선택해주세요', dong)
 
     # 전월세 선택
+    # rent_type = data['RENT_GBN'].unique()
+    # type_select = st.sidebar.selectbox('전세/월세', rent_type)
+
+    # 전세 / 월세 선택
     rent_type = data['RENT_GBN'].unique()
+    rent_type = np.append(rent_type, '모두')
     type_select = st.sidebar.selectbox('전세/월세', rent_type)
 
     # 보증금 범위 설정
@@ -46,6 +51,7 @@ def run_search():
     except:
         st.sidebar.error("범위 안 숫자를 입력하시오.")
 
+    # 보증금 범위 설정
     # rent_gtn_list = data['RENT_GTN'].values.tolist()
     # rent_gtn_select = st.sidebar.select_slider('보증금(만단위)', 
     # options = np.arange(min(rent_gtn_list), max(rent_gtn_list)+1),
@@ -132,17 +138,28 @@ def run_search():
     if st.sidebar.button('조회'):
         gu_search = (data['SGG_NM'] == gu_select)
         dong_search = (data['BJDONG_NM'] == dong_selcet)
-        type_search = (data['RENT_GBN'] == type_select)
+        # type_search = (data['RENT_GBN'] == type_select)
+        if '모두' in type_select:
+            pass
+        else:
+            type_search = (data['RENT_GBN'] == type_select)
         rent_gtn_search = (rent_gtn_select[0] <= data['RENT_GTN']) & (data['RENT_GTN'] <= rent_gtn_select[1])
         rent_fee_search = (rent_fee_select[0] <= data['RENT_FEE']) & (data['RENT_FEE'] <= rent_fee_select[1])
         rent_area_search = (rent_area_select[0]<= data['RENT_AREA']) & (data['RENT_AREA'] <= rent_area_select[1])
 
-        data_search = data[gu_search & dong_search & type_search & rent_gtn_search & rent_fee_search & rent_area_search]
+        # data_search에 검색한 값들만 데이터 추출
+        try:
+            data_search = data[gu_search & dong_search & type_search & rent_gtn_search & rent_fee_search & rent_area_search]
+        except:
+            data_search = data[gu_search & dong_search & rent_gtn_search & rent_fee_search & rent_area_search]
+        
+        # data_search에 검색한 값들만 데이터 추출
+        # data_search = data[gu_search & dong_search & type_search & rent_gtn_search & rent_fee_search & rent_area_search]
 
         # FLR_NO 컬럼 데이터에 층이란 문자열 추가
         data_search['FLR_NO'] = data_search['FLR_NO'].astype(str) + '층'
         
-        #필요없는 컬럼 삭제
+        # 필요없는 컬럼 삭제
         data_search = data_search.drop(['SGG_CD', 'BJDONG_CD'], axis=1)
         
         # 번지라는 컬럼을 만들고 'BOBN', 'BUBN' 컬럼 합치기
@@ -186,8 +203,3 @@ def run_search():
 #     st.sidebar.select_slider('평수', 
 #         options = np.arange(min_p, max_p+1),
 #         value = (min_p, max_p))
-    
-    
-
-        
-
