@@ -27,7 +27,7 @@ def run_title():
     with col1:
         st.subheader("""
         💵월세 실거래수 지역 순위
-        - *현재 월세 실거래수 TOP 10*
+        - *현재 월세 실거래수 TOP 10🥇*
         """)
         data_m = data[data['RENT_GBN']=='월세']
         cols = ['SGG_NM', 'BJDONG_NM']
@@ -39,7 +39,7 @@ def run_title():
     with col2:
         st.subheader("""
         💳전세 실거래수 지역 순위
-        - *현재 전세 실거래수 TOP10*
+        - *현재 전세 실거래수 TOP10🏆*
         """)
         data_m = data[data['RENT_GBN']=='전세']
         cols = ['SGG_NM', 'BJDONG_NM']
