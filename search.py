@@ -11,18 +11,18 @@ import math
 
 
 def run_search():
-    st.markdown("## 전월세 검색결과")
+    st.markdown("## 전월세 검색결과🔍️")
     data = pd.read_csv('data/bds_data.csv', encoding='cp949')
 
     # 해당 구 선택
     gu = data['SGG_NM'].unique()
-    gu_select = st.sidebar.selectbox('구', gu)
+    gu_select = st.sidebar.selectbox('구를 선택해주세요', gu)
 
     # 해당 동 선택
     # gu_select = data['SGG_NM'].unique()
     # a = st.sidebar.selectbox('구', gu_select)
     dong = data['BJDONG_NM'][data['SGG_NM'] == gu_select].unique()
-    dong_selcet = st.sidebar.selectbox('동', dong)
+    dong_selcet = st.sidebar.selectbox('동을 선택해주세요', dong)
 
     # 전월세 선택
     rent_type = data['RENT_GBN'].unique()
