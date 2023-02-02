@@ -14,6 +14,7 @@ from suggestions import run_suggestions
 
 st.title('🏘️내 방, 어디👀?')
 
+
 selected3 = option_menu(None, ["🏠Home", "🔎전월세 검색", "📊전세 예측?",
  '💬건의사항'], 
         # icons=['house', 'cloud-upload', "list-task", 'gear'], 
@@ -43,7 +44,6 @@ elif selected3 == "💬건의사항":
 
 else:
     selected3 == "🏠Home"
-
 
 
 # data = pd.read_csv('data/bds_data.csv', encoding='cp949')

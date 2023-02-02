@@ -5,7 +5,12 @@
 ### 2. 추천매물(필터링)
 ### 3. 월세 시세 보여주기 (전세, 매매)
 ***
-### 라이브러리 버젼 pandas(1.5.0v)
+### 라이브러리 버젼 
+- streamlit : 1.17.0v
+    - from streamlit_option_menu import option_menu
+- pandas : 1.5.3v
+- numpy : 1.24.1v
+- matplotlib : 3.6.3v
 ***
 ### 설치방법
 - MacOS

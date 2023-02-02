@@ -9,7 +9,6 @@ from streamlit_option_menu import option_menu
 import math
 
 
-
 def run_search():
     st.markdown("""
     ## 전월세 검색결과🔍️
