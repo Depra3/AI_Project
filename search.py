@@ -20,7 +20,7 @@ def run_search():
     Raises:
         ValueError : 
     """
-    
+
     st.markdown("""
     ## 전월세 검색결과🔍️
     *※ 왼쪽 사이드바에 있는 것을 조건에 맞게 선택하신 후 조회버튼을 눌러주세요※*
@@ -111,11 +111,6 @@ def run_search():
     # except:
     #     st.sidebar.error("범위 안 숫자를 입력하시오.")
 
-    # 보증금 범위 설정
-    # rent_gtn_list = data['RENT_GTN'].values.tolist()
-    # rent_gtn_select = st.sidebar.select_slider('보증금(만단위)', 
-    # options = np.arange(min(rent_gtn_list), max(rent_gtn_list)+1),
-    # value = (min(rent_gtn_list), max(rent_gtn_list)))
 
     # 월세 선택 슬라이더
     def update_slider_fee():
@@ -183,13 +178,6 @@ def run_search():
     # end = int(st.sidebar.text_input('Input:', '5000'))
     # slider_output = st.sidebar.select_slider('보증금', min_1, max_1)
     # st.write(slider_output)
-
-    # 월세 범위 설정
-    # input = st.sidebar.number_input('월세 범위', 1, 50000)
-    # rent_fee_list = data['RENT_FEE'].values.tolist()
-    # rent_fee_select = st.sidebar.select_slider('월세(만단위)', 
-    # options = np.arange(0, max(rent_fee_list)+1),
-    # value = (0, max(rent_fee_list)))
 
     # 면적(평)
     def update_slider_area():
@@ -263,21 +251,7 @@ def run_search():
     #                                                 )
     # except:
     #     st.sidebar.error("범위 안 숫자를 입력하시오.")
-
-    # 임대면적(평) 
-    # rent_area_list = data['RENT_AREA'].values.tolist()
-    # min_rent_list = min(rent_area_list)
-    # max_rent_list = max(rent_area_list)
-    # # 제곱미터 => 평 전환
-    # min_pyeong = math.floor(min_rent_list / 3.3058)
-    # max_pyeong = math.ceil(max_rent_list / 3.3058)
-    # rent_area_select = st.sidebar.select_slider('면적(평)', 
-    #     options = np.arange(min_pyeong, max_pyeong +1),
-    #     value = (min_pyeong, max_pyeong))
-    # rent_area_min = rent_area_select[0] * 3.3058
-    # rent_area_max = rent_area_select[1] * 3.3058
     
-
     # 버튼 생성
     if st.sidebar.button('조회'):
         gu_search = (data['SGG_NM'] == gu_select)
@@ -336,14 +310,3 @@ def run_search():
         data_search.index = data_search.index+1
 
         st.write(data_search)
-
-# def pyeong():
-#     data = pd.read_csv('data/bds_data.csv', encoding='cp949')
-#     rent_area_list = data['RENT_AREA'].values.tolist()
-#     min_list = min(rent_area_list)
-#     max_list = max(rent_area_list)
-#     min_p = math.floor(min_list / 3.3058)
-#     max_p = math.ceil(max_list / 3.3058)
-#     st.sidebar.select_slider('평수', 
-#         options = np.arange(min_p, max_p+1),
-#         value = (min_p, max_p))

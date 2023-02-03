@@ -47,15 +47,6 @@ def run_title():
     data_copy.index = data_copy.index+1
     st.write(data_copy)
 
-    # data_copy = data.copy()
-    # data_copy.columns = ['구코드', '구이름', '동코드', '동이름', '번지', '번지_', 
-    # '층수', '계약일', '전세/월세', '임대면적', '보증금', '임대료', 
-    # '건물이름', '건축년도', '건물타입']
-    # # data.columns = ['구코드', '구이름', '동코드', '동이름', '번지', '번지_', 
-    # # '층수', '계약일', '전세/월세', '임대면적', '보증금', '임대료', 
-    # # '건물이름', '건축년도', '건물타입']
-    # st.write(data_copy)
-
     t1, t2 = st.tabs(['전세 월평균 그래프', '월세 월평균 그래프'])
     j_m_mean = pd.read_csv('data/gu_j_m_mean.csv', encoding='cp949')
     w_m_mean = pd.read_csv('data/gu_w_m_mean.csv', encoding='cp949')
@@ -158,16 +149,3 @@ def run_title():
         
         # st.write()보여주기
         st.write(data_addr.head(10))
-
-    # st.title('TITLE')
-
-    # selected3 = option_menu(None, ["🏠Home", " 🔎전월세 검색",  "📊전세vs월세?", '💬건의사항'], 
-    #     # icons=['house', 'cloud-upload', "list-task", 'gear'], 
-    #     menu_icon="cast", default_index=0, orientation="horizontal",
-    #     styles={
-    #         "container": {"padding": "0!important", "background-color": "#fafafa"},
-    #         "icon": {"color": "gray", "font-size": "15px"}, 
-    #         "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-    #         "nav-link-selected": {"background-color": "#47C83E"},
-    #     }
-    # )
