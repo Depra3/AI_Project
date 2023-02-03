@@ -3,7 +3,10 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pandas as pd
+import numpy as np
 import math
+import plotly.graph_objects as go
+import plotly.express as px
 
 
 def run_title():
@@ -52,8 +55,75 @@ def run_title():
     # # '층수', '계약일', '전세/월세', '임대면적', '보증금', '임대료', 
     # # '건물이름', '건축년도', '건물타입']
     # st.write(data_copy)
-    
 
+    t1, t2 = st.tabs(['전세 월평균 그래프', '월세 월평균 그래프'])
+    j_m_mean = pd.read_csv('data/gu_j_m_mean.csv', encoding='cp949')
+    w_m_mean = pd.read_csv('data/gu_w_m_mean.csv', encoding='cp949')
+
+    gu = np.array(j_m_mean['SGG_NM'].unique())
+
+    with t1:
+        c1 = st.checkbox('전세 월평균 그래프', True)
+        
+        fig = go.Figure()
+        dic = {}
+        if c1:
+            fig = px.scatter(width=700)
+            for i in gu:
+                dic.update({i : j_m_mean[j_m_mean['SGG_NM']==i]['RENT_GTN']})
+            
+            for j in gu:
+                df = j_m_mean[j_m_mean['SGG_NM']==j]
+                fig.add_scatter(x=df['YM'], y=df['RENT_GTN'], name=j)
+            fig.update_layout(xaxis_title='날짜', yaxis_title='보증금(k=천만원)')
+            st.plotly_chart(fig)
+
+        else:
+            st.write(j_m_mean)
+
+    with t2:
+        c1, c2 = st.columns([1,1])
+        s1 = c1.checkbox('보증금 월평균 그래프', True)
+        s2 = c2.checkbox('월세 월평균 그래프', True)
+
+        p1 = c1.empty()
+        p2 = c2.empty()
+        
+        fig = go.Figure()
+        dic = {}
+        if s1:
+            with p1.container():
+                fig = px.scatter(width=350)
+                for i in gu:
+                    dic.update({i : w_m_mean[w_m_mean['SGG_NM']==i]['RENT_GTN']})
+                
+                for j in gu:
+                    df = w_m_mean[w_m_mean['SGG_NM']==j]
+                    fig.add_scatter(x=df['YM'], y=df['RENT_GTN'], name=j)
+                fig.update_layout(xaxis_title='날짜', yaxis_title='보증금(k=천만원)')
+                st.plotly_chart(fig)
+
+        else:
+            c1.write(j_m_mean)
+            p1 = st.empty()
+
+        if s2:
+            with p2.container():
+                fig = px.scatter(width=350)
+                for i in gu:
+                    dic.update({i : w_m_mean[w_m_mean['SGG_NM']==i]['RENT_GTN']})
+                
+                for j in gu:
+                    df = w_m_mean[w_m_mean['SGG_NM']==j]
+                    
+                    fig.add_scatter(x=df['YM'], y=df['RENT_FEE'], name=j)
+                fig.update_layout(xaxis_title='날짜', yaxis_title='보증금(만원)')
+                st.plotly_chart(fig)
+        else:
+            c2.write(w_m_mean)
+            p2 = st.empty()
+    
+    # 실거래 수 지역 순위
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("""
