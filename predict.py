@@ -9,6 +9,7 @@ matplotlib.use('Agg')
 import plotly.graph_objects as go
 import geopandas as gp
 import json
+
 def run_predict():
     st.title('전세 예측📈')
     df = pd.read_csv('data/bds_data.csv', encoding='cp949')
@@ -32,7 +33,7 @@ def run_predict():
     fig.update_layout(xaxis_title='날짜', yaxis_title='보증금(k=천만원)')
     st.plotly_chart(fig)
     m_df = pd.read_csv('data/bds_data.csv', encoding='euc-kr')
-    m_gu = pd.read_csv('data/gu_mean.csv', encoding='euc-kr')
+    m_gu = pd.read_csv('data/gu_j_d_mean.csv', encoding='euc-kr')
     geo = gp.read_file('data/layer1 (2).json')
     st.header("지역구별 평균 실거래가 확인")
     with open('data/layer1 (2).json', encoding='UTF-8') as f:
