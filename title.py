@@ -7,6 +7,16 @@ import math
 
 
 def run_title():
+    """홈페이지에서 인덱스화면을 표시하는 함수입니다.
+    Args:
+        
+
+    Returns:
+        
+
+    Raises:
+        ValueError : 
+    """
     # 서울시공공데이터에서 인증키를 받아 데이터를 받아옴
     # https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do
     # 인증키 : 4d42486779706d3034365957634870

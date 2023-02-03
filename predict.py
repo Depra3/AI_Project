@@ -10,6 +10,16 @@ import plotly.graph_objects as go
 
 
 def run_predict():
+    """홈페이지에서 전세예측 하는 화면 함수입니다.
+    Args:
+        
+
+    Returns:
+        
+
+    Raises:
+        ValueError : 
+    """
     st.title('전세 예측📈')
     df = pd.read_csv('data/bds_data.csv', encoding='cp949')
     

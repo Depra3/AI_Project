@@ -45,6 +45,7 @@ def get_by_comment(comment):
 def update_status(email):
     cur.execute('UPDATE suggestion SET status = "처리완료" WHERE email="{}"'.format(email))
     conn.commit()
+
 def recover_status(email):
     cur.execute('UPDATE suggestion SET status = "접수" WHERE email="{}"'.format(email))
     conn.commit()
@@ -61,7 +62,21 @@ def delete_post(email):
 # -------------------------------------------------------------------------------------------------
 
 def run_suggestions():
-    st.subheader('건의사항')
+    """홈페이지에서 건의사항 화면을 표시하는 함수입니다.
+    Args:
+        
+
+    Returns:
+        
+
+    Raises:
+        ValueError : 
+    """
+
+    st.subheader("""
+    건의사항💢
+    - *궁금하시거나 불편하신 점 있으시면 게시판 등록해주세요!!*
+    """)
 
     # 문의사항 입력
     with st.expander("문의하기"):

@@ -10,6 +10,17 @@ import math
 
 
 def run_search():
+    """홈페이지에서 전월세 검색하는 화면 표시하는 함수입니다.
+    Args:
+        
+
+    Returns:
+        
+
+    Raises:
+        ValueError : 
+    """
+    
     st.markdown("""
     ## 전월세 검색결과🔍️
     *※ 왼쪽 사이드바에 있는 것을 조건에 맞게 선택하신 후 조회버튼을 눌러주세요※*
@@ -252,7 +263,7 @@ def run_search():
     #                                                 )
     # except:
     #     st.sidebar.error("범위 안 숫자를 입력하시오.")
-    
+
     # 임대면적(평) 
     # rent_area_list = data['RENT_AREA'].values.tolist()
     # min_rent_list = min(rent_area_list)
