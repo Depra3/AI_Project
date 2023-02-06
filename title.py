@@ -7,8 +7,8 @@ import numpy as np
 import math
 import plotly.graph_objects as go
 import plotly.express as px
-import tensorflow as tf
-import yfinance as yf
+# import tensorflow as tf
+# import yfinance as yf
 import requests
 
 # print("tensorflow", str(tf.__version__))
@@ -27,7 +27,7 @@ def run_title():
     """
     # 서울시공공데이터에서 인증키를 받아 데이터를 받아옴
     # https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do
-    # 인증키 : 4d42486779706d3034365957634870
+    # 인증키 : 
     data = pd.read_csv('data/bds_data.csv', encoding='cp949')
     st.markdown("""
     ## 👑실거래 현황

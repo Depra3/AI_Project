@@ -7,7 +7,7 @@ import streamlit as st
 data = pd.read_csv('data/bds_data.csv', encoding='cp949')
 
 for j in range(1,2):
-    service_key = '4d42486779706d3034365957634870'
+    service_key = 
     # url = f'http://openapi.seoul.go.kr:8088/{service_key}/json/tbLnOpendataRentV/{1+((j-1)*1000)}/{j*1000}'
     url = f'http://openapi.seoul.go.kr:8088/{service_key}/json/\
         tbLnOpendataRentV/{1+((j-1)*1000)}/{j*1000}/ / / / / / / /20230131'
