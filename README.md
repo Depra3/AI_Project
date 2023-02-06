@@ -16,32 +16,28 @@
 - 인원 : 7명
 - 주여 업무 : Streamlit 라이브러리를 이용한 웹개발 구현 코드 작성
 - 기간 : 2023-01-30 - 2023-02-10
+***
 
 ### 라이브러리 버전
-***
 - streamlit : 1.17.0v
-    - from streamlit_option_menu import option_menu
+  - from streamlit_option_menu import option_menu : 0.3.2v
 - pandas : 1.5.3v
 - numpy : 1.24.1v
 - matplotlib : 3.6.3v
+- plotly : 5.13.0v
 - geopandas : 0.12.2v
-- json , math, time, plotly, sqlite3
+- json , math, time, sqlite3
+
 ## 소스코드 설명
 ***
 
 
 
-
-### 99 . 팀 구성
-- 작업 툴 : Python
-- 인원 : 7명
-  - AI : 3명
-  - 웹개발 : 4명
-- 주요 업무 : 웹개발 코드 구현
-- 기간 : 
 ## 기간
 ### 2023-01-30
+
 ***
+
 ### 2023-02-01
 ## 개발팀
 - 오늘 한 것 : 
@@ -94,6 +90,9 @@
   - 월세, 보증금, 면적 select_slider 입력 ==> input 값도 변경
 ### 팀
 ***
+### 2023-02-05
+***
+### 2023-02-06
 
 
 

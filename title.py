@@ -7,8 +7,13 @@ import numpy as np
 import math
 import plotly.graph_objects as go
 import plotly.express as px
+import tensorflow as tf
+import yfinance as yf
 
+# print("tensorflow", str(tf.__version__))
+# print("yfinance", str(tf.__version__))
 
+import os
 def run_title():
     """홈페이지에서 인덱스화면을 표시하는 함수입니다.
     Args:
