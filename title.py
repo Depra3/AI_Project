@@ -9,11 +9,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 import tensorflow as tf
 import yfinance as yf
+import requests
 
 # print("tensorflow", str(tf.__version__))
 # print("yfinance", str(tf.__version__))
 
-import os
 def run_title():
     """홈페이지에서 인덱스화면을 표시하는 함수입니다.
     Args:
@@ -135,22 +135,63 @@ def run_title():
         #인덱스 재지정
         data_addr = data_addr.reset_index(drop=True)
         data_addr.index = data_addr.index+1
-        # st.write()보여주기
-        st.write(data_addr.head(10))
+
+        # 그래프
+        c1 = st.checkbox('월세 실거래 수 지역 순위 그래프', True)
+        fig = go.Figure()
+        if c1:
+            fig = px.bar(x=data_addr.head(10)['주소'], y=data_addr.head(10)['거래 수'], width=350,
+                        color=data_addr.head(10)['주소'])
+            fig.update_layout(xaxis_title='지역 동', yaxis_title='보증금(만원)')
+            st.plotly_chart(fig)
+        else:
+            # 데이터
+            st.write(data_addr.head(10))
+
+    # 전세 실거래 수 지역 순위(월세와 같은 방식)
     with col2:
         st.subheader("""
         💳전세 실거래수 지역 순위
         - *현재 전세 실거래수 TOP10*🏆
         """)
-        # 전세인 데이터 추출
         data_m = data[data['RENT_GBN']=='전세']
-        # 구, 동 합치기
         cols = ['SGG_NM', 'BJDONG_NM']
         data_m['주소'] = data_m[cols].apply(lambda row:' '.join(row.values.astype(str)),axis=1)
         data_addr = data_m['주소'].value_counts().rename_axis('주소').reset_index(name='거래 수')
-        # 인덱스 재지정
         data_addr = data_addr.reset_index(drop=True)
         data_addr.index = data_addr.index+1
+        # 그래프
+        c1 = st.checkbox('전세 실거래 수 지역 순위 그래프', True)
+        fig = go.Figure()
+        if c1:
+            fig = px.bar(x=data_addr.head(10)['주소'], y=data_addr.head(10)['거래 수'], width=350,
+                        color=data_addr.head(10)['주소'])
+            fig.update_layout(xaxis_title='지역 동', yaxis_title='보증금(만원)')
+            st.plotly_chart(fig)
+        else:
+            # 데이터
+            st.write(data_addr.head(10))
+
+
+
+
         
-        # st.write()보여주기
-        st.write(data_addr.head(10))
+    #     # st.write()보여주기
+    #     st.write(data_addr.head(10))
+    # with col2:
+    #     st.subheader("""
+    #     💳전세 실거래수 지역 순위
+    #     - *현재 전세 실거래수 TOP10*🏆
+    #     """)
+    #     # 전세인 데이터 추출
+    #     data_m = data[data['RENT_GBN']=='전세']
+    #     # 구, 동 합치기
+    #     cols = ['SGG_NM', 'BJDONG_NM']
+    #     data_m['주소'] = data_m[cols].apply(lambda row:' '.join(row.values.astype(str)),axis=1)
+    #     data_addr = data_m['주소'].value_counts().rename_axis('주소').reset_index(name='거래 수')
+    #     # 인덱스 재지정
+    #     data_addr = data_addr.reset_index(drop=True)
+    #     data_addr.index = data_addr.index+1
+        
+    #     # st.write()보여주기
+    #     st.write(data_addr.head(10))

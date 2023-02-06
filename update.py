@@ -7,7 +7,10 @@ import streamlit as st
 data = pd.read_csv('data/bds_data.csv', encoding='cp949')
 
 for j in range(1,2):
-    url = f'http://openapi.seoul.go.kr:8088/{service_key}/json/tbLnOpendataRentV/{1+((j-1)*1000)}/{j*1000}'
+    service_key = '4d42486779706d3034365957634870'
+    # url = f'http://openapi.seoul.go.kr:8088/{service_key}/json/tbLnOpendataRentV/{1+((j-1)*1000)}/{j*1000}'
+    url = f'http://openapi.seoul.go.kr:8088/{service_key}/json/\
+        tbLnOpendataRentV/{1+((j-1)*1000)}/{j*1000}/ / / / / / / /20230131'
     print(url)
     req = requests.get(url)
     content = req.json()
@@ -43,5 +46,5 @@ df['CNTRCT_DE'] = df['CNTRCT_DE'].apply(lambda x: pd.to_datetime(str(x), format=
 df['CNTRCT_DE'] = df['CNTRCT_DE'].astype('str')
 df['CNTRCT_DE'].replace('T00:00:00', '', inplace=True)
 df = df.dropna()
-st.write(df)
+st.write(df['CNTRCT_DE'] == '20230131')
 # df.to_csv('data.csv',encoding='euc-kr', index=False)
